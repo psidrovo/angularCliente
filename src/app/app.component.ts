@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+  public usuarios:Array<any> = []
+  constructor(
+    private usuarioService:UsuarioService
+  ){
+    this.usuarioService.getUsuarios().subscribe((resp:any)=>{
+      console.log(resp)
+      this.usuarios = resp
+    })
+  }
+
 }
